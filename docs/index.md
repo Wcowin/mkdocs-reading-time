@@ -1,4 +1,5 @@
 ---
+title: MkDocs Reading Time
 hide:
 #   - navigation # 显示右
 #   - toc #显示左
@@ -7,7 +8,7 @@ hide:
 comments: false
 ---  
 
-# MkDocs Reading Time
+<!-- # MkDocs Reading Time -->
 
 <p align="center">
     <img src="https://img.shields.io/badge/MkDocs-reading_time-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white" alt="MkDocs Hooks">
@@ -204,5 +205,5 @@ def calculate_reading_stats(markdown):
 
 📝 *让MkDocs文档更加系统化*
 
-**[⬆ 回到顶部](#mkdocs-reading-time)**
+**[⬆ 回到顶部](#1)**
 
