@@ -1,4 +1,7 @@
-site_name: My Docs
+site_name: MkDocs Reading Time
+site_description: MkDocs Reading Time 是一个用于计算文档阅读时间的插件，支持多种主题和配置选项，旨在提升用户体验。
+site_author: Wcowin
+site_url: http://wcowin.work/mkdocs-reading-time/ # 站点URL
 theme:
   name: material #主题
   custom_dir: docs/overrides
@@ -56,8 +59,10 @@ repo_name: MkDocs Reading Time # 右上角的名字
 copyright: Copyright &copy; 2025 Wcowin # 左下角的版权声明
 
 nav:
-  - 示例页面: index.md
+  - 教程说明: index.md
   # - English: mkdocs-reading-time.md
+  - 测试页面:
+      - 小米: xiaomi.md  #测试
   - 更新日志:
     - blog/index.md
     
