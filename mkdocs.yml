@@ -46,20 +46,19 @@ theme:
     - content.code.copy # 代码块一键复制
     - content.code.select # 代码块一键全选
     # - content.action.edit # 编辑按钮
-    - content.action.view # 查看源码按钮
+    # - content.action.view # 查看源码按钮
     - content.code.annotate # 代码注释
 
 edit_uri: edit/main/docs # 编辑按钮跳转的链接 
-repo_url: https://github.com/Wcowin/mkdocs-ai-hooks # 右上角点击跳转的链接
-repo_name: mkdocs-ai-hooks # 右上角的名字
+repo_url: https://github.com/Wcowin/mkdocs-reading-time # 右上角点击跳转的链接
+repo_name: MkDocs Reading Time # 右上角的名字
 
 copyright: Copyright &copy; 2025 Wcowin # 左下角的版权声明
 
 nav:
-  - 中文: index.md
-  - English: mkdocs-reading-time.md
-  # - 小米: blog/xiaomo.md  #测试
-  - 博客:
+  - 示例页面: index.md
+  # - English: mkdocs-reading-time.md
+  - 更新日志:
     - blog/index.md
     
 plugins:

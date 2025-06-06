@@ -1,16 +1,16 @@
-# MkDocs AI Hooks
+# MkDocs Reading Time
 
 <p align="center">
-    <img src="https://img.shields.io/badge/MkDocs-Hooks-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white" alt="MkDocs Hooks">
-    <img src="https://img.shields.io/badge/AI_Powered-DeepSeek-FF6B35?style=for-the-badge&logo=openai&logoColor=white" alt="AI Powered">
+    <img src="https://img.shields.io/badge/MkDocs-reading time-526CFE?style=for-the-badge&logo=MaterialForMkDocs&logoColor=white" alt="MkDocs Hooks">
+    <!-- <img src="https://img.shields.io/badge/AI_Powered-DeepSeek-FF6B35?style=for-the-badge&logo=openai&logoColor=white" alt="AI Powered"> -->
     <img src="https://img.shields.io/badge/Python-3.7+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.7+">
 </p>
 
 <p align="center">
-    <a href="https://github.com/Wcowin/mkdocs-ai-hooks/blob/main/README.md">中文</a> | <a href="README-en.md">English</a>
+    <a href="README.md">中文</a> | <a href="README-en.md">English</a>
 </p>
 
-🌟**为MkDocs文档添加阅读时间统计功能。！**     
+🌟**为MkDocs文档添加阅读时间统计功能！**     
 
 支持自定义统计格式和排除特定页面,可计算中文字符数、代码行数并估算阅读时间，适用于长文档网站，提升用户体验。配置包含排除规则设置和本地预览测试方法，便于灵活部署。  
 
