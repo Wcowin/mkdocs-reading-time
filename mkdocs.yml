@@ -129,5 +129,8 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
+extra_css:
+  - stylesheets/customize.css  #按钮圆角化
+
 hooks:
   - docs/overrides/hooks/reading_time.py
