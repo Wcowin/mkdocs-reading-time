@@ -8,6 +8,19 @@ hide:
 comments: false
 ---  
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2327435979273742"
+     crossorigin="anonymous"></script>
+<!-- AD3 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2327435979273742"
+     data-ad-slot="7789926269"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <!-- # MkDocs Reading Time -->
 
 <p align="center">
