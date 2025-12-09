@@ -16,7 +16,7 @@
 
 ![image](https://s1.imagehub.cc/images/2025/06/06/a4584dbad4da3f87eb5c2f1e7ed14a74.png)
 
-🌐 **在线演示**: https://wcowin.work/mkdocs-reading-time/
+🌐 **在线演示**: [https://wcowin.work/mkdocs-reading-time/](https://wcowin.github.io/mkdocs-reading-time/)
 
 ---
 
