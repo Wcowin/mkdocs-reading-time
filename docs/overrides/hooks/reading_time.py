@@ -5,7 +5,16 @@ from functools import lru_cache
 # 预编译正则表达式（保持原有格式）
 # 在这里排除不需要统计的文件：
 EXCLUDE_PATTERNS = [
-    # re.compile(r'^blog/posts\.md$'),
+    re.compile(r'^index\.md$'),
+    re.compile(r'^about/'),
+    re.compile(r'^trip/index\.md$'),
+    re.compile(r'^relax/index\.md$'),
+    re.compile(r'^blog/indexblog\.md$'),
+    re.compile(r'^blog/posts\.md$'),
+    re.compile(r'^develop/index\.md$'),
+    re.compile(r'waline\.md$'),
+    re.compile(r'link\.md$'),
+    re.compile(r'404\.md$'),
 ]
 
 # 优化的字符统计正则表达式
@@ -14,6 +23,8 @@ CODE_BLOCK_PATTERN = re.compile(r'```.*?```', re.DOTALL)
 INLINE_CODE_PATTERN = re.compile(r'`[^`]+`')
 YAML_FRONT_PATTERN = re.compile(r'^---.*?---\s*', re.DOTALL)
 HTML_TAG_PATTERN = re.compile(r'<[^>]+>')
+SCRIPT_TAG_PATTERN = re.compile(r'<script.*?>.*?</script>', re.DOTALL)
+STYLE_TAG_PATTERN = re.compile(r'<style.*?>.*?</style>', re.DOTALL)
 IMAGE_PATTERN = re.compile(r'!\[.*?\]\([^)]+\)')
 LINK_PATTERN = re.compile(r'\[([^\]]+)\]\([^)]+\)')
 
@@ -54,8 +65,10 @@ def clean_markdown_content_for_chinese(content_hash, markdown):
     """清理Markdown内容，只保留中文文本用于统计（添加缓存）"""
     content = markdown
     
-    # 使用预编译的正则表达式
+    # 使用预编译的正则表达式（调整处理顺序，优先清理脚本和样式）
     content = YAML_FRONT_PATTERN.sub('', content)
+    content = SCRIPT_TAG_PATTERN.sub('', content)
+    content = STYLE_TAG_PATTERN.sub('', content)
     content = HTML_TAG_PATTERN.sub('', content)
     content = IMAGE_PATTERN.sub('', content)
     content = LINK_PATTERN.sub(r'\1', content)
@@ -206,43 +219,52 @@ def calculate_reading_stats(markdown):
 
 def on_page_markdown(markdown, **kwargs):
     page = kwargs['page']
-    
+
     # 快速排除检查
     if page.meta.get('hide_reading_time', False):
         return markdown
-    
+
     # 保持原有的EXCLUDE_PATTERNS循环检查方式
     src_path = page.file.src_path
     for pattern in EXCLUDE_PATTERNS:
         if pattern.match(src_path):
             return markdown
-    
+
     # 优化类型检查
     page_type = page.meta.get('type', '')
     if page_type in EXCLUDE_TYPES:
         return markdown
-    
-    # 快速预检查
+
+    # 快速预检查，如果内容长度小于300字符，则不添加阅读信息
     if len(markdown) < 300:
         return markdown
-    
+
     # 计算统计信息
     reading_time, chinese_chars, code_lines = calculate_reading_stats(markdown)
-    
-    # 过滤太短的内容
-    if chinese_chars < 50:
-        return markdown
-    
+
     # 生成阅读信息
     if code_lines > 0:
-        reading_info = f"""!!! info "📖 阅读信息"
-    阅读时间：**{reading_time}** 分钟 | 中文字符：**{chinese_chars}** | 有效代码行数：**{code_lines}**
-
+        reading_info = f"""<div markdown="1" style="margin-top: -30px; font-size: 0.80em; opacity: 0.7;">
+:material-circle-edit-outline: 约 {chinese_chars} 个中文字符 :fontawesome-solid-code: {code_lines} 行代码 :material-clock-time-two-outline: 预计阅读时间 {reading_time} 分钟
+</div>
 """
     else:
-        reading_info = f"""!!! info "📖 阅读信息"
-    阅读时间：**{reading_time}** 分钟 | 中文字符：**{chinese_chars}**
-
+        reading_info = f"""<div markdown="1" style="margin-top: -30px; font-size: 0.80em; opacity: 0.7;">
+:material-circle-edit-outline: 约 {chinese_chars} 个中文字符 :material-clock-time-two-outline: 预计阅读时间 {reading_time} 分钟
+</div>
 """
-    
-    return reading_info + markdown
+
+    # 查找并插入到文档的第一个一级标题之后（保持标题为第一行）
+    modified_content = re.sub(
+        r'(^# .+?$)\n',
+        rf'\1\n\n{reading_info}',
+        markdown,
+        count=1,
+        flags=re.MULTILINE
+    )
+
+    # 如果没有找到一级标题，则在文档开头添加
+    if modified_content == markdown:
+        modified_content = f"{reading_info}\n\n{markdown}"
+
+    return modified_content
